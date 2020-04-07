@@ -1,0 +1,42 @@
+{% include 'bases/base.html' %}
+
+{% block content %}
+<div>
+	<form action="{% url 'home' %}" method="POST"></form>
+		<table class="tabel table-bordered">
+			<thead>
+				<td>
+					Question
+				</td>
+				<td>Option 1</td>
+				<td>Option 2</td>
+				<td>Option 3</td>
+				<td>Option 4</td>
+			</thead>
+			<tbody>
+				{%for queation in questions %}
+				<tr>
+					<td>
+						{{queation.que_name}}?
+					</td>
+					<td hidden class="que_id">
+						{{queation.id}}?
+					</td>
+					{% for ans in queation.answers %}
+					<td>
+						<input type="radio" name="answer" value="{{ans.ans_que_id}}">{{ans.ans_name}}
+					</td>
+					<td hidden class="ans_id">
+						{{ans.id}}?
+					</td>
+					{%endfor%}
+
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<input type="submit" name="submit">
+	</form>
+</div>
+{% endblock %}
+
